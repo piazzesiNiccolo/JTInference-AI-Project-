@@ -8,7 +8,8 @@ import numpy as np
 Metastatic_Cancer = TabularCPD('m',2,[[0.8],[0.2]])
 Serum_Calcium = TabularCPD('s',2,[[0.8,0.2],[0.2,0.8]],['m'],[2])
 Brain_Tumor =  TabularCPD('b',2,[[0.95,0.8],[0.05,0.2]],['m'],[2])
-Coma =  TabularCPD('c', 2,[[0.95,0.1,0.3,0.2],[0.05,0.9,0.7,0.8]],['s', 'b'], [2, 2])
+Coma =  TabularCPD('c', 2,[[0.95,0.1,0.3,0.2],[0.05,0.9,0.7,0.8]],['b','s'], [2, 2])
+print(Coma.marginalize(['b','s'],False))
 Severe_Headache = TabularCPD('h', 2,[[0.4,0.2,],[0.6,0.8]],['b'], [2])
 bsm = Clique([Metastatic_Cancer,Serum_Calcium,Brain_Tumor])
 sbc = Clique([Serum_Calcium,Brain_Tumor,Coma])
@@ -17,8 +18,10 @@ bh = Clique([Brain_Tumor,Severe_Headache])
 jt = JunctionTree('tree',bsm,[bsm,sbc,bh])
 jt.add_separator(bsm,sbc)
 jt.add_separator(bsm,bh)
-jt.enter_evidence('s',0)
-print(bh.cpt.marginalize(['b'],False))
+jt.propagate()
+print(sbc.cpt.marginalize([x for x in sbc.cpt.scope() if x != 'c'],False))
+jt.enter_evidence('m',1)
+print(sbc.cpt.marginalize([x for x in sbc.cpt.scope() if x != 'c'],False))
 
 ##ICY ROAD
 
@@ -33,5 +36,5 @@ jt2 = JunctionTree('t',iw,[iw,ih])
 jt2.add_separator(iw,ih)
 jt2.enter_evidence('i',1)
 
-print(ih.cpt.marginalize(['i'],False))
-print(iw.cpt.marginalize(['i'],False))
+##print(ih.cpt.marginalize(['i'],False))
+

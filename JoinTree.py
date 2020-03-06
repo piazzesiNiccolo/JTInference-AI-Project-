@@ -23,9 +23,14 @@ class JunctionTree(object):
         ev = TabularCPD(variable, 2, [[0], [0]])
         ev.get_values()[value] = 1
         for clique in self.cliques:
-            if next((x for x in clique.nodes if x.variable == variable)):
-                clique.cpt.product(ev)
-                break
+            found = False
+            for node in clique.nodes:
+                if node.variable == variable:
+                    clique.cpt.product(ev)
+                    found = True
+                    break
+                if found:
+                    break
         self.propagate()
 
     def propagate(self):
