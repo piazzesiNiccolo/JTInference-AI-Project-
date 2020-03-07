@@ -1,23 +1,21 @@
 
 from bayes import Clique, Separator
 import numpy as np
+import random
 from pgmpy.factors.discrete.CPD import TabularCPD
 np.seterr(divide='ignore', invalid='ignore')
 
 class JunctionTree(object):
 
-    def __init__(self, name, root, list_cliques, separators=set()):
+    def __init__(self, name,  list_cliques,root = None, separators=set()):
         self.name = name
         self.cliques = set(list_cliques)
         self.separators = separators
-        self.root = root
+        self.root = root if root else random.choice(list(self.cliques))
         self.initialize = False
 
-    def set_root(self,node = None):
-        if node:
-            self.root = node
-        else:
-            pass
+    def set_root(self,root):
+        self.root = root
     
     def add_separator(self, clique1, clique2):
         sep = Separator(clique1, clique2)

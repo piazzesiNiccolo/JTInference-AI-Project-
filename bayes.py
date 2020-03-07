@@ -10,7 +10,7 @@ class Clique(object):
         self.nodes = set(nodes)
         self.visited = False
         self.neighbors = set()
-        self.table = self.init_table()
+        self.init_table()
 
     def add_neighbor(self, neighbor, separator):
         n = (neighbor, separator)
@@ -19,27 +19,26 @@ class Clique(object):
             neighbor.neighbors.add((self, separator))
 
     def init_table(self):
-        table = DiscreteFactor([node.variable for node in self.nodes], 
+        self.table = DiscreteFactor([node.variable for node in self.nodes], 
                              [2 for i in range(len(self.nodes))], 
                              np.ones(2**len(self.nodes)))
         for node in self.nodes:
-            table.product(node)
-        table.normalize()
-        return table
+            self.table.product(node)
+        self.table.normalize()
+        
 
 
 class Separator(object):
 
     def __init__(self, clique1, clique2):
         self.nodes = clique1.nodes.intersection(clique2.nodes)
-        self.visited = False
-        self.table = self.init_table()
+        self.init_table()
         self.neighbors = [clique1, clique2]
 
     def init_table(self):
-        table = DiscreteFactor([node.variable for node in self.nodes], [
+        self.table = DiscreteFactor([node.variable for node in self.nodes], [
                              2 for i in range(len(self.nodes))], np.ones(2**len(self.nodes)))
         for node in self.nodes:
-            table.product(node)
-            table.normalize()
-        return table
+            self.table.product(node)
+        self.table.normalize()
+       
