@@ -1,3 +1,7 @@
+from bayes import Clique,Separator
+from JoinTree import JunctionTree
+from pgmpy.factors.discrete.CPD import TabularCPD
+
 ##WET GRASS
 r = TabularCPD("r",2,[[0.8],[0.2]])
 s = TabularCPD("s",2,[[0.9],[0.1]])
@@ -11,5 +15,5 @@ jt.add_separator(wr,hrs)
 jt.enter_evidence('r',1)
 
 
-##TO DO: scelta root,riguardare aggiunta vicini,e struttura generale
+
 print(hrs.cpt.marginalize(['r','h'],False))

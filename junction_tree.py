@@ -1,5 +1,5 @@
 
-from bayes import Clique, Separator
+from node import Clique, Separator
 import numpy as np
 import random
 from pgmpy.factors.discrete.CPD import TabularCPD
@@ -12,7 +12,6 @@ class JunctionTree(object):
         self.cliques = set(list_cliques)
         self.separators = separators
         self.root = root if root else random.choice(list(self.cliques))
-        self.initialize = False
 
     def set_root(self,root):
         self.root = root
@@ -22,8 +21,8 @@ class JunctionTree(object):
         self.separators.add(sep)
         clique1.add_neighbor(clique2, sep)
 
-    def enter_evidence(self, variable, value):
-        ev = TabularCPD(variable, 2, [[0], [0]])
+    def enter_evidence(self, variable, value, cardinality):
+        ev = TabularCPD(variable, 2, [[0] for i in range(cardinality)])
         ev.get_values()[value] = 1
         for clique in self.cliques:
             found = False
@@ -49,7 +48,6 @@ class JunctionTree(object):
 
     def collect_evidence(self, pc, cc, sepset, send):
         cc.table.normalize()
-        print('collect')
         cc.visited = True
         for neighbor, sep in cc.neighbors:
             if not neighbor.visited:
@@ -59,7 +57,6 @@ class JunctionTree(object):
 
     def distribute_evidence(self, clique):
         clique.table.normalize()
-        print('distribute')
         clique.visited = True
         for neighbor, sep in clique.neighbors:
             if not neighbor.visited:
