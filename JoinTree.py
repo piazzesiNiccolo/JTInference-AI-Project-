@@ -1,8 +1,8 @@
-import numpy as np
-import copy
-from bayes import Clique, Separator
-from pgmpy.factors.discrete.CPD import TabularCPD
 
+from bayes import Clique, Separator
+import numpy as np
+from pgmpy.factors.discrete.CPD import TabularCPD
+np.seterr(divide='ignore', invalid='ignore')
 
 class JunctionTree(object):
 
@@ -13,9 +13,14 @@ class JunctionTree(object):
         self.root = root
         self.initialize = False
 
+    def set_root(self,node = None):
+        if node:
+            self.root = node
+        else:
+            pass
+    
     def add_separator(self, clique1, clique2):
         sep = Separator(clique1, clique2)
-        sep.init_cpt()
         self.separators.add(sep)
         clique1.add_neighbor(clique2, sep)
 
@@ -26,7 +31,7 @@ class JunctionTree(object):
             found = False
             for node in clique.nodes:
                 if node.variable == variable:
-                    clique.cpt.product(ev)
+                    clique.table.product(ev)
                     found = True
                     break
                 if found:
@@ -34,41 +39,42 @@ class JunctionTree(object):
         self.propagate()
 
     def propagate(self):
-        self.set_visited()
-        self.collect(None, self.root, None, True)
-        self.set_visited()
-        self.distribute(self.root)
+        self.set_visited(False)
+        self.collect_evidence(None, self.root, None, True)
+        self.set_visited(False)
+        self.distribute_evidence(self.root)
+        
         for cl in self.cliques:
-            cl.cpt.normalize()
+            cl.table.normalize()
         for sep in self.separators:
-            sep.cpt.normalize()
+            sep.table.normalize()
 
-    def collect(self, pc, cc, sepset, send):
-        cc.cpt.normalize()
+    def collect_evidence(self, pc, cc, sepset, send):
+        cc.table.normalize()
         print('collect')
         cc.visited = True
         for neighbor, sep in cc.neighbors:
             if not neighbor.visited:
-                self.collect(cc, neighbor, sep, False)
+                self.collect_evidence(cc, neighbor, sep, False)
         if not send:
             self.pass_message(cc, pc, sepset)
 
-    def distribute(self, clique):
-        clique.cpt.normalize()
+    def distribute_evidence(self, clique):
+        clique.table.normalize()
         print('distribute')
         clique.visited = True
         for neighbor, sep in clique.neighbors:
             if not neighbor.visited:
                 self.pass_message(clique, neighbor, sep)
-                self.distribute(neighbor)
+                self.distribute_evidence(neighbor)
 
     def pass_message(self, from_clique: Clique, to_clique: Clique, sep: Separator):
         x = [node.variable for node in from_clique.nodes.difference(sep.nodes)]
-        new = from_clique.cpt.marginalize(x, False)
-        to_clique.cpt.product(new)
-        to_clique.cpt.divide(sep.cpt)
-        sep.cpt = new
+        new = from_clique.table.marginalize(x, False)
+        to_clique.table.product(new)
+        to_clique.table.divide(sep.table)
+        sep.table = new
 
-    def set_visited(self, visit=False):
+    def set_visited(self, visit=True):
         for c in self.cliques:
             c.visited = visit
