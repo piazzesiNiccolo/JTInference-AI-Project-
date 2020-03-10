@@ -13,6 +13,8 @@ wr = Clique([w,r])
 hrs = Clique([h,r,s])
 jt = JunctionTree('f',[wr,hrs])
 jt.add_separator(wr,hrs)
+
+#run queries
 print('\n\nQUERY SU H:\n')
 ##h query
 print('p(h) senza evidenza')

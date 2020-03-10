@@ -41,22 +41,24 @@ class JunctionTree(object):
             c.visited = visit
     
     def query(self,variable,evidence_list = []):
+        
         for var,value in evidence_list:
             self.enter_evidence(var,value)
-        for clique in self.cliques:
-            if variable in clique.table.scope():
-                return clique.table.marginalize([x for x in clique.table.scope() if x != variable],False)
-    
-    def enter_evidence(self, variable, value, possible_values = 2):
         
-        ev = TabularCPD(variable, possible_values, [[0] for i in range(possible_values)])
+        for clique in self.cliques:
+            for node  in clique.nodes:
+                if node.variable == variable:
+                    return clique.table.marginalize([x for x in clique.table.scope() if x != variable],False)
+    
+    def enter_evidence(self, variable, value):
+        ev = TabularCPD(variable,2 , [[0] , [0]])
         ev.get_values()[value] = 1
         for clique in self.cliques:
             if variable in clique.table.scope():
                 clique.table.product(ev)
                 break
         self.propagate()
-
+    
     def propagate(self):
         
         self.is_visited(False)
