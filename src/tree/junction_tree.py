@@ -44,7 +44,7 @@ class JunctionTree(object):
         
         for var,value in evidence_list:
             self.enter_evidence(var,value)
-        
+        self.propagate()
         for clique in self.cliques:
             for node  in clique.nodes:
                 if node.variable == variable:
