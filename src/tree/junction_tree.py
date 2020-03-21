@@ -57,13 +57,15 @@ class JunctionTree(object):
             if variable in clique.table.scope():
                 clique.table.product(ev)
                 break
-        self.propagate()
+        
     
     def propagate(self):
         
         self.is_visited(False)
+        print('collecting evidence...')
         self.collect_evidence(None, self.root, None, True)
         self.is_visited(False)
+        print('distributing evidence...')
         self.distribute_evidence(self.root)
         self.normalize()
         
