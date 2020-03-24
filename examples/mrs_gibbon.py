@@ -5,7 +5,7 @@ from pgmpy.factors.discrete.CPD import TabularCPD
 
 ##setup tables
 def mrs_gibbon_example():
-    print('running mrs_gibbon example...')
+    print('RUNNING MRS GIBBON EXAMPLE\n\n')
     print('setting up network...')
     rain = TabularCPD("r",2,[[0.9],[0.1]],state_names={'r': ['no','yes']})
     sprinkler  = TabularCPD("s",2,[[0.9],[0.1]],state_names={'s': ['no','yes']})
@@ -31,6 +31,7 @@ def mrs_gibbon_example():
     s_evidence = ('s', 1)
     print(jt.query('h',[w_evidence,s_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     print('\n\nQUERY SU WATSON:\n')
     jt.init_tree()
     print('p(w) senza evidenza')
@@ -40,6 +41,7 @@ def mrs_gibbon_example():
     h_evidence = ('h',0)
     print(jt.query('w',[g_evidence,h_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     print('\n\nQUERY SU RAIN:\n')
     #r query
     jt.init_tree()
@@ -49,6 +51,7 @@ def mrs_gibbon_example():
     h_evidence = ('h', 1)
     print(jt.query('r',[w_evidence,h_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     print('\n\nQUERY SU SPRNKLER:\n')
     #s query
     jt.init_tree()
@@ -57,6 +60,7 @@ def mrs_gibbon_example():
     print('p(s) con evidenza  h = yes')
     print(jt.query('s',[h_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     print('\n\nQUERY SU GIBBON:\n')
     jt.init_tree()
     print('p(gibbon) senza evidenza')

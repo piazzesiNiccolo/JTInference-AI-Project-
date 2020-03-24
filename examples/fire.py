@@ -4,7 +4,8 @@ from pgmpy.factors.discrete.CPD import TabularCPD
 
 #setup nodes
 def fire_example():
-    print('running fire example...')
+    print('RUNNING FIRE EXAMPLE\n\n')
+    
     print('setting up network...')
     fire = TabularCPD('f',2,[[0.99],[0.01]])
     tampering = TabularCPD('t',2,[[0.98], [0.02]])
@@ -23,6 +24,8 @@ def fire_example():
     tree.add_separator(la,lr)
     tree.add_separator(aft,fs)
     print('running queries...')
+
+
     print('\n\n QUERY SU FIRE\n')
     print('p(fire) senza evidenza ')
     print(tree.query('f'))
@@ -31,6 +34,7 @@ def fire_example():
     print('p(fire) con evidenza leaving = 1 e alarm = 1')
     print(tree.query('f',[l_evidence,a_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\n QUERY SU TAMPERING\n')
     print('p(tampering) senza evidenza ')
@@ -40,6 +44,7 @@ def fire_example():
     print('p(tampering) con evidenza report = 1 e smoke = 0')
     print(tree.query('t',[r_evidence,s_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\n QUERY SU SMOKE\n')
     print('p(smoke) senza evidenza ')
@@ -49,6 +54,7 @@ def fire_example():
     print('p(tampering) con evidenza fire = 1 e leaving = 0')
     print(tree.query('s',[f_evidence,l_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\n QUERY SU ALARM\n')
     print('p(alarm) senza evidenza ')
@@ -58,6 +64,7 @@ def fire_example():
     print('p(alarm) con evidenza report = 1 e smoke = 0')
     print(tree.query('a',[r_evidence,s_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\n QUERY SU LEAVING\n')
     print('p(leaving) senza evidenza ')
@@ -67,6 +74,7 @@ def fire_example():
     print('p(tampering) con evidenza report = 1, fire = 1 e tampering = 1')
     print(tree.query('l',[r_evidence,f_evidence, t_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\n QUERY SU REPORT\n')
     print('p(report) senza evidenza ')

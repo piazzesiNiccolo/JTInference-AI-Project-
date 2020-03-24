@@ -7,6 +7,7 @@ from pgmpy.factors.discrete.CPD import TabularCPD
 #cancer_neapolitan
 def cancer_neapolitan_example():
     
+    print('RUNNING CANCER NEAPOLITAN EXAMPLE\n\n')
     print('setting up network...')
     Metastatic_Cancer = TabularCPD('m',2,[[0.8],[0.2]])
     Serum_Calcium = TabularCPD('s',2,[[0.8,0.2],[0.2,0.8]],['m'],[2])
@@ -21,22 +22,24 @@ def cancer_neapolitan_example():
     jt.add_separator(bsm,sbc)
     jt.add_separator(bsm,bh)
 
-    print('\n\n QUERY SU Metastatic cancer\n')
+    print('\n\n QUERY SU METASTATIC CANCER\n')
     print('p(m_cancer) senza evidenza: ')
     print(jt.query('m'))
     print('p(m_cancer con evidenza brain_tumor = 1 e coma = 1')
     b_evidence = ('b',1)
     c_evidence = ('c',1)
     print(jt.query('m',[b_evidence,c_evidence]))
-
+    
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt.init_tree()
-    print('\n\n QUERY SU serum Calcium\n')
+    print('\n\n QUERY SU SERUM CALCIUM\n')
     print('p(s_calcium) senza evidenza: ')
     print(jt.query('s'))
     print('p(s_calcium) con evidenza metastatic_cancer = 0')
     m_evidence = ('m',0)
     print(jt.query('s',[m_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt.init_tree()
     print('\n\n QUERY SU BRAIN TUMOR\n')
     print('p(b_tumor) senza evidenza: ')
@@ -46,6 +49,7 @@ def cancer_neapolitan_example():
     h_evidence = ('h', 1)
     print(jt.query('b',[m_evidence,s_evidence,h_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt.init_tree()
     print('\n\n QUERY SU COMA\n')
     print('p(coma) senza evidenza: ')
@@ -53,6 +57,7 @@ def cancer_neapolitan_example():
     print('p(coma) con evidenza brain tumor = 1 e severe_headaches = 1 ')
     print(jt.query('c',[b_evidence, h_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt.init_tree()
     print('\n\n QUERY SU SEVERE_HEADACHES\n')
     print('p(headaches) senza evidenza: ')

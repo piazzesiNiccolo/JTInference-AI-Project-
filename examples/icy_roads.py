@@ -4,7 +4,7 @@ from pgmpy.factors.discrete.CPD import TabularCPD
 
 ##ICY ROADS
 def icy_roads_example():
-    print('running icy_roads example...')
+    print('RUNNING ICY ROADS EXAMPLE \n\n')
     print('setting up network...')
     icy = TabularCPD('i',2,[[0.3],[0.7]])
     holmes = TabularCPD('h',2,[[0.9,0.2],[0.1,0.8]],['i'],[2])
@@ -24,6 +24,7 @@ def icy_roads_example():
     print('p(icy) con evidenza holmes = 0 e watson = 1')
     print(jt2.query('i',[h_evidence,w_evidence]))
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt2.init_tree()
     print('\n\n QUERY SU WATSON\n')
     print('p(watson) senza evidenza: ')
@@ -33,6 +34,7 @@ def icy_roads_example():
     print(jt2.query('w',[h_evidence]))
 
 
+    input('\n PRESS ANY KEY TO RUN NEXT QUERY')
     jt2.init_tree()
     print('\n\n QUERY SU HOLMES\n')
     print('p(holmes) senza evidenza: ')
