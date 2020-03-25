@@ -2,6 +2,7 @@
 from tree.node import Clique, Separator
 import numpy as np
 import random
+import copy
 from pgmpy.factors.discrete.CPD import TabularCPD
 np.seterr(divide='ignore', invalid='ignore')
 
@@ -50,11 +51,11 @@ class JunctionTree(object):
                 if node.variable == variable:
                     return clique.table.marginalize([x for x in clique.table.scope() if x != variable],False)
     
-    def enter_evidence(self, variable, value):
-        ev = TabularCPD(variable,2 , [[0] , [0]])
+    def enter_evidence(self, node, value):
+        ev = TabularCPD(node.variable,node.variable_card, [[0] for i in range(node.variable_card)])
         ev.get_values()[value] = 1
         for clique in self.cliques:
-            if variable in clique.table.scope():
+            if ev.variable in clique.table.scope():
                 clique.table *= ev
                 break
         
