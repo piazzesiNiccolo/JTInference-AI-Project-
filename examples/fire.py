@@ -12,7 +12,7 @@ def fire_example():
     smoke = TabularCPD('s',2 ,[[0.99, 0.1], [0.01,0.9]],['f'],[2])
     alarm = TabularCPD('a',2 ,[[0.9999, 0.15, 0.01, 0.5], [0.0001,0.85,0.99, 0.5]],['f','t'],[2,2])
     leaving = TabularCPD('l',2 ,[[0.999, 0.12], [0.001,0.88]],['a'],[2])
-    report = TabularCPD('r',2 ,[[0.99, 0.25], [0.01,0.75]],['l'],[2])
+    report = TabularCPD('r', 2 ,[[0.99, 0.25], [0.01,0.65],[0,0.1]],['l'],[2])
     print('setting up tree...')
     #setup tree
     la = Clique([leaving,alarm])

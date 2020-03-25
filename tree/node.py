@@ -20,11 +20,10 @@ class Clique(object):
 
     def init_table(self):
         self.table = DiscreteFactor([node.variable for node in self.nodes], 
-                                    [2 for i in range(len(self.nodes))], 
-                                    np.ones(2**len(self.nodes)))
+                                    [node.variable_card for node in self.nodes], 
+                                    np.ones(np.prod([node.variable_card for node in self.nodes])))
         for node in self.nodes:
-            self.table.product(node)
-        self.table.normalize()
+            self.table *= node
         
 
 
@@ -37,9 +36,8 @@ class Separator(object):
 
     def init_table(self):
         self.table = DiscreteFactor([node.variable for node in self.nodes],
-                                    [2 for i in range(len(self.nodes))],
-                                    np.ones(2**len(self.nodes)))
+                                    [node.variable_card for node in self.nodes],
+                                    np.ones(np.prod([node.variable_card for node in self.nodes])))
         for node in self.nodes:
-            self.table.product(node)
-        self.table.normalize()
+            self.table *= node
        

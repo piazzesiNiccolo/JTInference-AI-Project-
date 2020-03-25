@@ -55,7 +55,7 @@ class JunctionTree(object):
         ev.get_values()[value] = 1
         for clique in self.cliques:
             if variable in clique.table.scope():
-                clique.table.product(ev)
+                clique.table *= ev
                 break
         
     
@@ -89,8 +89,8 @@ class JunctionTree(object):
         
         x = [node.variable for node in from_clique.nodes.difference(sep.nodes)]
         new = from_clique.table.marginalize(x, False)
-        to_clique.table.product(new)
-        to_clique.table.divide(sep.table)
+        to_clique.table *= new
+        to_clique.table /= sep.table
         sep.table = new
 
     
