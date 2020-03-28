@@ -22,7 +22,7 @@ def cancer_neapolitan_example():
     jt.add_separator(bsm,sbc)
     jt.add_separator(bsm,bh)
 
-    print('\n\n METASTATIC CANCER\n')
+    print('\n\nMETASTATIC CANCER\n')
     print('p(m_cancer) whitout evidence: ')
     print(jt.query('m'))
     print('p(m_cancer with evidence brain_tumor = 1 and coma = 1')
@@ -32,7 +32,7 @@ def cancer_neapolitan_example():
     
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt.init_tree()
-    print('\n\n SERUM CALCIUM\n')
+    print('\n\nSERUM CALCIUM\n')
     print('p(s_calcium) whitout evidence: ')
     print(jt.query('s'))
     print('p(s_calcium) with evidence metastatic_cancer = 0')
@@ -41,7 +41,7 @@ def cancer_neapolitan_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt.init_tree()
-    print('\n\n BRAIN TUMOR QUERY\n')
+    print('\n\nBRAIN TUMOR QUERY\n')
     print('p(b_tumor) whitout evidence: ')
     print(jt.query('b'))
     print('p(b_tumor) with evidence metastatic_cancer = 0, serum_calcium = 1 and severe_headaches = 1')
@@ -51,7 +51,7 @@ def cancer_neapolitan_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt.init_tree()
-    print('\n\n COMA\n')
+    print('\n\nCOMA\n')
     print('p(coma) whitout evidence: ')
     print(jt.query('c'))
     print('p(coma) with evidence brain tumor = 1 and severe_headaches = 1 ')
@@ -59,7 +59,7 @@ def cancer_neapolitan_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt.init_tree()
-    print('\n\n SEVERE_HEADACHES\n')
+    print('\n\nSEVERE_HEADACHES\n')
     print('p(headaches) whitout evidence: ')
     print(jt.query('h'))
     print('p(headaches) with evidence brain tumor = 1 and metastatic_cancer = 0 ')

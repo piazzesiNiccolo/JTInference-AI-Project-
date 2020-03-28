@@ -26,7 +26,7 @@ def fire_example():
     print('running queries...')
 
 
-    print('\n\n FIRE\n')
+    print('\n\nFIRE\n')
     print('p(fire) without evidence ')
     print(tree.query('f'))
     l_evidence = (leaving, 1)
@@ -46,7 +46,7 @@ def fire_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     tree.init_tree()
-    print('\n\n SMOKE\n')
+    print('\n\nSMOKE\n')
     print('p(smoke) without evidence ')
     print(tree.query('s'))
     f_evidence = (fire, 1)
@@ -56,7 +56,7 @@ def fire_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     tree.init_tree()
-    print('\n\n ALARM\n')
+    print('\n\nALARM\n')
     print('p(alarm) without evidence ')
     print(tree.query('a'))
     r_evidence = (report, 1)
@@ -66,7 +66,7 @@ def fire_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     tree.init_tree()
-    print('\n\n LEAVING\n')
+    print('\n\nLEAVING\n')
     print('p(leaving) without evidence ')
     print(tree.query('l'))
     f_evidence = (fire, 1)
@@ -76,7 +76,7 @@ def fire_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     tree.init_tree()
-    print('\n\n REPORT\n')
+    print('\n\nREPORT\n')
     print('p(report) without evidence ')
     print(tree.query('r'))
     t_evidence = (tampering, 0)

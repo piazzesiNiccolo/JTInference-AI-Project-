@@ -16,7 +16,7 @@ def icy_roads_example():
     jt2 = JunctionTree('t',[iw,ih])
     jt2.add_separator(iw,ih)
 
-    print('\n\n ICY\n')
+    print('\n\nICY\n')
     print('p(icy) without evidence: ')
     print(jt2.query('i'))
     w_evidence = (watson,1)
@@ -26,7 +26,7 @@ def icy_roads_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt2.init_tree()
-    print('\n\n WATSON\n')
+    print('\n\nWATSON\n')
     print('p(watson) without evidence: ')
     print(jt2.query('w'))
     h_evidence = (holmes,1)
@@ -36,7 +36,7 @@ def icy_roads_example():
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt2.init_tree()
-    print('\n\n HOLMES\n')
+    print('\n\nHOLMES\n')
     print('p(holmes) without evidence: ')
     print(jt2.query('h'))
     i_evidence = (icy,0)

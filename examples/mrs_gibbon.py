@@ -22,7 +22,7 @@ def mrs_gibbon_example():
     jt.add_separator(rg,rw)
 
     #run queries
-    print('\n\n HOLMES:\n')
+    print('\n\nHOLMES:\n')
     ##h query
     print('p(holmes) without evidence')
     print(jt.query('h'))
@@ -32,7 +32,7 @@ def mrs_gibbon_example():
     print(jt.query('h',[w_evidence,s_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
-    print('\n\n WATSON:\n')
+    print('\n\nWATSON:\n')
     jt.init_tree()
     print('p(watson) without evidence')
     print(jt.query('w'))
@@ -42,7 +42,7 @@ def mrs_gibbon_example():
     print(jt.query('w',[g_evidence,h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
-    print('\n\n RAIN:\n')
+    print('\n\nRAIN:\n')
     #r query
     jt.init_tree()
     print('p(rain) without evidence')
