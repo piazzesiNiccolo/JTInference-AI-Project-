@@ -2,15 +2,15 @@
 from tree.node import Clique, Separator
 import numpy as np
 import random
-import copy
 from pgmpy.factors.discrete.CPD import TabularCPD
+
 np.seterr(divide='ignore', invalid='ignore')
 
 class JunctionTree(object):
 
-    def __init__(self, name,  list_cliques,root = None, separators=set()):
+    def __init__(self, name, cliques, root = None, separators=set()):
         self.name = name
-        self.cliques = set(list_cliques)
+        self.cliques = set(cliques)
         self.separators = separators
         self.root = root if root else random.choice(list(self.cliques))
 
@@ -51,6 +51,7 @@ class JunctionTree(object):
                 if node.variable == variable:
                     return clique.table.marginalize([x for x in clique.table.scope() if x != variable],False)
     
+    
     def enter_evidence(self, node, value):
         ev = TabularCPD(node.variable,node.variable_card, [[0] for i in range(node.variable_card)])
         ev.get_values()[value] = 1
@@ -64,19 +65,19 @@ class JunctionTree(object):
         
         self.is_visited(False)
         print('collecting evidence...')
-        self.collect_evidence(None, self.root, None, True)
+        self.collect_evidence(None, self.root, None)
         self.is_visited(False)
         print('distributing evidence...')
         self.distribute_evidence(self.root)
         self.normalize()
         
 
-    def collect_evidence(self, pc, cc, sepset, is_root):
+    def collect_evidence(self, pc, cc, sepset):
         cc.visited = True
         for neighbor, sep in cc.neighbors:
             if not neighbor.visited:
-                self.collect_evidence(cc, neighbor, sep, False)
-        if not is_root:
+                self.collect_evidence(cc, neighbor, sep)
+        if cc is not self.root:
             self.pass_message(cc, pc, sepset)
 
     def distribute_evidence(self, clique):

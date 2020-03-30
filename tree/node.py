@@ -31,9 +31,9 @@ class Separator(object):
 
     def __init__(self, clique1, clique2):
         self.nodes = clique1.nodes.intersection(clique2.nodes)
-        self.init_table()
         self.neighbors = [clique1, clique2]
-
+        self.init_table()
+    
     def init_table(self):
         self.table = DiscreteFactor([node.variable for node in self.nodes],
                                     [node.variable_card for node in self.nodes],
