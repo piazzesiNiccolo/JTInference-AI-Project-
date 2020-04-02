@@ -24,9 +24,9 @@ def mrs_gibbon_example():
     #run queries
     print('\n\nHOLMES:\n')
     ##h query
-    print('p(holmes) without evidence')
+    print('p(holmes)')
     print(jt.query('h'))
-    print('\np(holmes) with evidence  watson = yes and sprinkler = yes')
+    print('\np(holmes|watson = yes, sprinkler = yes)')
     w_evidence = (watson,1)
     s_evidence = (sprinkler, 1)
     print(jt.query('h',[w_evidence,s_evidence]))
@@ -34,9 +34,9 @@ def mrs_gibbon_example():
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\nWATSON:\n')
     jt.init_tree()
-    print('p(watson) without evidence')
+    print('p(watson)')
     print(jt.query('w'))
-    print('p(watson) with evidence gibbon = yes and holmes = no')
+    print('p(watson|ibbon = yes, holmes = no)')
     g_evidence = (gibbon, 1)
     h_evidence = (holmes,0)
     print(jt.query('w',[g_evidence,h_evidence]))
@@ -45,9 +45,9 @@ def mrs_gibbon_example():
     print('\n\nRAIN:\n')
     #r query
     jt.init_tree()
-    print('p(rain) without evidence')
+    print('p(rain)')
     print(jt.query('r'))
-    print('p(rain) with evidence  watson = yes and holmes = yes')
+    print('p(rain|watson = yes, holmes = yes)')
     h_evidence = (holmes, 1)
     print(jt.query('r',[w_evidence,h_evidence]))
 
@@ -55,17 +55,17 @@ def mrs_gibbon_example():
     print('\n\n SPRNKLER:\n')
     #s query
     jt.init_tree()
-    print('p(sprinkler) without evidence')
+    print('p(sprinkler)')
     print(jt.query('s'))
-    print('p(sprinkler) with evidence  holmes = yes')
+    print('p(sprinkler|holmes = yes)')
     print(jt.query('s',[h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\n GIBBON:\n')
     jt.init_tree()
-    print('p(gibbon) without evidence')
+    print('p(gibbon)')
     print(jt.query('g'))
-    print('p(g) with evidence  watson = yes')
+    print('p(g|watson = yes)')
     w_evidence = (watson, 1)
     print(jt.query('g',[w_evidence]))
 
