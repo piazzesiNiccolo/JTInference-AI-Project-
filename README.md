@@ -15,7 +15,7 @@ $ pip3 install -r requirements.txt
 
 
 
-Per visualizzare le reti e verificare i risultati installare inoltre [Hugin Educational](https://www.hugin.com/index.php/hugin-explorerhugin-educational/)
+Per visualizzare le reti e verificare i risultati installare inoltre [Hugin Educational](https://www.hugin.com/index.php/hugin-explorerhugin-educational/).
 Le reti utilizzate sono presenti nella cartella samples del path dove è installato hugin, ma sono state incluse per sicurezza anche nella cartella hugin_networks di questo progetto
 
 ## Esecuzione
@@ -29,7 +29,7 @@ $ python3 run_examples.py
 
 ## Riferimenti
 
-Per implementare l'algoritmo è stato consultato [Introduction to Bayesian Networks ](http://ai.dinfo.unifi.it/teaching/ai15/jens.zip) di Jensen
+L'algoritmo implementato è ripreso da [Introduction to Bayesian Networks ](http://ai.dinfo.unifi.it/teaching/ai19/jtree.7z) di Jensen (password dell'archivio:ai19)
 
 
 
