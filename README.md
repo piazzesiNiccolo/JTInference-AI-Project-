@@ -10,7 +10,7 @@ Per scaricare il programma ed installare le dipendenze necessarie aprire il term
 $ git clone https://github.com/piazzesiNiccolo/JTInference-AI-Project-.git
 $ cd JTInference-AI-Project-/
 $ pip3 install -r requirements.txt
-``
+```
 È possibile installare pgmpy e le dipendenze necessarie anche attraverso conda, seguendo le istruzioni a [questo link](https://pypi.org/project/pgmpy/)
 
 
