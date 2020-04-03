@@ -6,12 +6,21 @@ def flood_example():
     print('RUNNING FLOOD EXAMPLE\n\n')
     print('setting up network...')
 
-    rain = TabularCPD('r',2,[[0.99],[0.01]])
-    burglary = TabularCPD('b',2,[[0.5],[0.5]])
-    earthquake = TabularCPD('e',2,[[0.9],[0.1]])
-    flood = TabularCPD('f',2,[[1, 0.9],[0, 0.1]],['r'],[2])
-    alarm = TabularCPD('a',2,[[0.99, 0.01, 0.01, 0, 0.01, 0, 0, 0],[0.01, 0.99, 0.99, 1, 0.99, 1, 1, 1]],['e','b','f'],[2, 2, 2])
-    seismometer = TabularCPD('s', 3,[[0.97, 0.01, 0.01, 0], [0.02, 0.97, 0.02, 0.03], [0.01, 0.02, 0.97, 0.97]], ['b', 'e'],[2, 2])
+    rain = TabularCPD('r',2,[[0.99],[0.01]],state_names={'r':['no', 'yes']})
+    
+    burglary = TabularCPD('b',2,[[0.5],[0.5]],state_names={'b':['no','yes']})
+    
+    earthquake = TabularCPD('e',2,[[0.9],[0.1]],state_names={'b':['no','yes']})
+    
+    flood = TabularCPD('f',2,[[1, 0.9],[0, 0.1]],['r'],[2],state_names={'f':['no','yes'], 'r':['no', 'yes']})
+    
+    alarm = TabularCPD('a',2,[[0.99, 0.01, 0.01, 0, 0.01, 0, 0, 0],[0.01, 0.99, 0.99, 1, 0.99, 1, 1, 1]],
+                            ['e','b','f'],[2, 2, 2],
+                            state_names={'a':['no','yes'],'e':['no', 'yes'], 'b':['no', 'yes'], 'f':['no', 'yes']})
+    
+    seismometer = TabularCPD('s', 3,[[0.97, 0.01, 0.01, 0], [0.02, 0.97, 0.02, 0.03], [0.01, 0.02, 0.97, 0.97]],
+                                 ['b', 'e'],[2, 2],
+                                 {'b':['no', 'yes'], 'e':['no', 'yes']})
 
     print('setting up junction tree...')
     feba = Clique([flood,earthquake, burglary, alarm])

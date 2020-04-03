@@ -9,15 +9,25 @@ def cancer_neapolitan_example():
     
     print('RUNNING CANCER NEAPOLITAN EXAMPLE\n\n')
     print('setting up network...')
-    Metastatic_Cancer = TabularCPD('m',2,[[0.8],[0.2]])
-    Serum_Calcium = TabularCPD('s',2,[[0.8,0.2],[0.2,0.8]],['m'],[2])
-    Brain_Tumor =  TabularCPD('b',2,[[0.95,0.8],[0.05,0.2]],['m'],[2])
-    Coma =  TabularCPD('c', 2,[[0.95,0.1,0.3,0.2],[0.05,0.9,0.7,0.8]],['b','s'], [2, 2])
-    Severe_Headache = TabularCPD('h', 2,[[0.4,0.2,],[0.6,0.8]],['b'], [2])
+    Metastatic_Cancer = TabularCPD('m',2,[[0.8],[0.2]],state_names={'m':['no','yes']})
+    
+    Serum_Calcium = TabularCPD('s',2,[[0.8,0.2],[0.2,0.8]],['m'],[2],
+                                    state_names={'s':['no','yes'],'m':['no','yes']})
+    
+    Brain_Tumor =  TabularCPD('b',2,[[0.95,0.8],[0.05,0.2]],['m'],[2],
+                                    state_names={'b':['no','yes'],'m':['no','yes']})
+   
+    Coma =  TabularCPD('c', 2,[[0.95,0.1,0.3,0.2],[0.05,0.9,0.7,0.8]],['b','s'], [2, 2],
+                            state_names={'c':['no','yes'],'b':['no','yes'],'s':['no','yes']})
+    
+    Severe_Headache = TabularCPD('h', 2,[[0.4,0.2,],[0.6,0.8]],['b'], [2],
+                                        state_names={'h':['no','yes'],'b':['no','yes']})
+    
     print('setting up junction tree...')
     bsm = Clique([Metastatic_Cancer,Serum_Calcium,Brain_Tumor])
     sbc = Clique([Serum_Calcium,Brain_Tumor,Coma])
     bh = Clique([Brain_Tumor,Severe_Headache])
+    
     jt = JunctionTree('tree',[bsm,sbc,bh])
     jt.add_separator(bsm,sbc)
     jt.add_separator(bsm,bh)

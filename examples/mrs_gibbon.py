@@ -7,11 +7,19 @@ from pgmpy.factors.discrete.CPD import TabularCPD
 def mrs_gibbon_example():
     print('RUNNING MRS GIBBON EXAMPLE\n\n')
     print('setting up network...')
-    rain = TabularCPD("r",2,[[0.9],[0.1]])
-    sprinkler  = TabularCPD("s",2,[[0.9],[0.1]])
-    watson = TabularCPD('w',2,[[0.9,0.01],[0.1,0.99]],['r'],[2])
-    holmes = TabularCPD('h', 2,[[1,0.01, 0.1, 0],[0,0.99 ,0.9, 1]],['s', 'r'], [2, 2])
-    gibbon = TabularCPD('g',2,[[0.9,0.01],[0.1,0.99]],['r'],[2])
+    
+    rain = TabularCPD('r',2,[[0.9],[0.1]],state_names={'r':['no', 'yes']})
+    
+    sprinkler  = TabularCPD('s',2,[[0.9],[0.1]],state_names={'s':['no', 'yes']})
+    
+    watson = TabularCPD('w',2,[[0.9,0.01],[0.1,0.99]],['r'],[2],
+                            state_names={'w':['no','yes'], 'r':['no', 'yes']})
+    
+    holmes = TabularCPD('h', 2,[[1,0.01, 0.1, 0],[0,0.99 ,0.9, 1]],['s', 'r'], [2, 2],
+                            state_names={'h':['no', 'yes'],'s':['no','yes'],'r':['no', 'yes']})
+    
+    gibbon = TabularCPD('g',2,[[0.9,0.01],[0.1,0.99]],['r'],[2],
+                            state_names={'g':['no','yes'], 'r':['no', 'yes']})
     print('setting up junction tree...')
     #setup tree
     rg = Clique([rain,gibbon])

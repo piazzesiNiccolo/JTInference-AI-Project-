@@ -7,12 +7,21 @@ def fire_example():
     print('RUNNING FIRE EXAMPLE\n\n')
     
     print('setting up network...')
-    fire = TabularCPD('f',2,[[0.99],[0.01]])
-    tampering = TabularCPD('t',2,[[0.98], [0.02]])
-    smoke = TabularCPD('s',2 ,[[0.99, 0.1], [0.01,0.9]],['f'],[2])
-    alarm = TabularCPD('a',2 ,[[0.9999, 0.15, 0.01, 0.5], [0.0001,0.85,0.99, 0.5]],['f','t'],[2,2])
-    leaving = TabularCPD('l',2 ,[[0.999, 0.12], [0.001,0.88]],['a'],[2])
-    report = TabularCPD('r', 2 ,[[0.99, 0.25], [0.01,0.75]],['l'],[2])
+    fire = TabularCPD('f',2,[[0.99],[0.01]],state_names={'f':['no','yes']})
+    
+    tampering = TabularCPD('t',2,[[0.98], [0.02]], state_names={'t':['no','yes']})
+    
+    smoke = TabularCPD('s',2 ,[[0.99, 0.1], [0.01,0.9]],['f'],[2], 
+                            state_names={'s':['no','yes'], 'f':['no', 'yes']})
+    
+    alarm = TabularCPD('a',2 ,[[0.9999, 0.15, 0.01, 0.5], [0.0001,0.85,0.99, 0.5]],['f','t'],[2,2],
+                            state_names={'a':['no','yes'], 'f':['no', 'yes'], 't':['no','yes']})
+    
+    leaving = TabularCPD('l',2 ,[[0.999, 0.12], [0.001,0.88]],['a'],[2],
+                            state_names={'l':['no','yes'], 'a':['no', 'yes']})
+    
+    report = TabularCPD('r', 2 ,[[0.99, 0.25], [0.01,0.75]],['l'],[2],
+                            state_names={'r':['no','yes'], 'l':['no', 'yes']})
     print('setting up tree...')
     #setup tree
     la = Clique([leaving,alarm])
