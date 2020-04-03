@@ -20,6 +20,7 @@ def mrs_gibbon_example():
     
     gibbon = TabularCPD('gibbon',2,[[0.9,0.01],[0.1,0.99]],['rain'],[2],
                             state_names={'gibbon':['no','yes'], 'rain':['no', 'yes']})
+    
     print('setting up junction tree...')
     #setup tree
     rg = Clique([rain,gibbon])
@@ -73,7 +74,7 @@ def mrs_gibbon_example():
     jt.init_tree()
     print('p(gibbon)')
     print(jt.query('gibbon'))
-    print('p(g|watson = yes)')
+    print('p(gibbon|watson = yes)')
     w_evidence = (watson, 1)
     print(jt.query('gibbon',[w_evidence]))
 

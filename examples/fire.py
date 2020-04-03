@@ -40,7 +40,7 @@ def fire_example():
     print(tree.query('fire'))
     l_evidence = (leaving, 1)
     a_evidence = (alarm, 1)
-    print('p(fire|leaving = 1, alarm = 1)')
+    print('p(fire|leaving = yes, alarm = yes)')
     print(tree.query('fire',[l_evidence,a_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -50,7 +50,7 @@ def fire_example():
     print(tree.query('tampering'))
     r_evidence = (report, 1)
     s_evidence = (smoke, 0)
-    print('p(tampering|report = 1, smoke = 0)')
+    print('p(tampering|report = yes, smoke = no)')
     print(tree.query('tampering',[r_evidence,s_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -60,7 +60,7 @@ def fire_example():
     print(tree.query('smoke'))
     f_evidence = (fire, 1)
     l_evidence = (leaving, 0)
-    print('p(smoke|fire = 1, leaving = 0)')
+    print('p(smoke|fire = yes, leaving = no)')
     print(tree.query('smoke',[f_evidence,l_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -70,7 +70,7 @@ def fire_example():
     print(tree.query('alarm'))
     r_evidence = (report, 1)
     s_evidence = (smoke, 0)
-    print('p(alarm|report = 1, smoke = 0)')
+    print('p(alarm|report = yes, smoke = no)')
     print(tree.query('alarm',[r_evidence,s_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -80,7 +80,7 @@ def fire_example():
     print(tree.query('leaving'))
     f_evidence = (fire, 1)
     t_evidence = (tampering, 1)
-    print('p(tampering|report = 1, fire = 1, tampering = 1)')
+    print('p(tampering|report = no, fire = yes, tampering = yes)')
     print(tree.query('leaving',[r_evidence,f_evidence, t_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -90,5 +90,5 @@ def fire_example():
     print(tree.query('report'))
     t_evidence = (tampering, 0)
     s_evidence = (smoke, 1)
-    print('p(report|tampering = 0, smoke = 1)')
+    print('p(report|tampering = no, smoke = yes)')
     print(tree.query('report',[t_evidence,s_evidence]))

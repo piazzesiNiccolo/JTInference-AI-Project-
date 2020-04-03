@@ -36,7 +36,7 @@ def flood_example():
     print('p(rain): ')
     print(tree.query('rain'))
     a_evidence = (alarm, 1)
-    print('p(rain|alarm = 1)')
+    print('p(rain|alarm = yes)')
     print(tree.query('rain',[a_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')

@@ -16,7 +16,6 @@ def icy_roads_example():
     print('setting up junction tree...')
     iw = Clique([icy,watson])
     ih = Clique([icy,holmes])
-    print(iw.name)
     jt2 = JunctionTree('t',[iw,ih])
     jt2.add_separator(iw,ih)
 

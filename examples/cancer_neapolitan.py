@@ -35,7 +35,7 @@ def cancer_neapolitan_example():
     print('\n\nMETASTATIC CANCER\n')
     print('p(metastatic_cancer): ')
     print(jt.query('metastatic_cancer'))
-    print('p(metastatic_cancer | brain_tumor = 1, coma = 1)')
+    print('p(metastatic_cancer | brain_tumor = yes, coma = yes)')
     b_evidence = (Brain_Tumor,1)
     c_evidence = (Coma,1)
     print(jt.query('metastatic_cancer',[b_evidence,c_evidence]))
@@ -45,7 +45,7 @@ def cancer_neapolitan_example():
     print('\n\nSERUM CALCIUM\n')
     print('p(serum_calcium): ')
     print(jt.query('serum_calcium'))
-    print('p(serum_calcium | metastatic_cancer = 0)')
+    print('p(serum_calcium | metastatic_cancer = no)')
     m_evidence = (Metastatic_Cancer,0)
     print(jt.query('serum_calcium',[m_evidence]))
 
@@ -54,7 +54,7 @@ def cancer_neapolitan_example():
     print('\n\nBRAIN TUMOR QUERY\n')
     print('p(brain_tumor): ')
     print(jt.query('brain_tumor'))
-    print('p(brain_tumor | metastatic_cancer = 0, serum_calcium = 1, severe_headaches = 1)')
+    print('p(brain_tumor | metastatic_cancer = no, serum_calcium = yes, severe_headaches = no)')
     s_evidence = (Serum_Calcium, 1)
     h_evidence = (Severe_Headache, 1)
     print(jt.query('brain_tumor',[m_evidence,s_evidence,h_evidence]))
@@ -64,7 +64,7 @@ def cancer_neapolitan_example():
     print('\n\nCOMA\n')
     print('p(coma): ')
     print(jt.query('coma'))
-    print('p(coma | brain_tumor = 1, severe_headaches = 1) ')
+    print('p(coma | brain_tumor = yes, severe_headaches = yes) ')
     print(jt.query('coma',[b_evidence, h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
@@ -72,7 +72,7 @@ def cancer_neapolitan_example():
     print('\n\nSEVERE_HEADACHES\n')
     print('p(severe_headaches): ')
     print(jt.query('severe_headaches'))
-    print('p(severe_headaches | brain_tumor = 1, metastatic_cancer = 0 )')
+    print('p(severe_headaches | brain_tumor = yes, metastatic_cancer = no )')
     print(jt.query('severe_headaches',[b_evidence, m_evidence]))
 
 
