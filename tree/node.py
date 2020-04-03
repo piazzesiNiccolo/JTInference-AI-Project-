@@ -6,7 +6,7 @@ import numpy as np
 class Clique(object):
 
     def __init__(self, nodes):
-        self.name = ''.join(node.variable for node in nodes)
+        self.name = '_'.join(node.variable for node in nodes)
         self.nodes = set(nodes)
         self.visited = False
         self.neighbors = set()

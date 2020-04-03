@@ -8,18 +8,18 @@ def mrs_gibbon_example():
     print('RUNNING MRS GIBBON EXAMPLE\n\n')
     print('setting up network...')
     
-    rain = TabularCPD('r',2,[[0.9],[0.1]],state_names={'r':['no', 'yes']})
+    rain = TabularCPD('rain',2,[[0.9],[0.1]],state_names={'rain':['no', 'yes']})
     
-    sprinkler  = TabularCPD('s',2,[[0.9],[0.1]],state_names={'s':['no', 'yes']})
+    sprinkler  = TabularCPD('sprinkler',2,[[0.9],[0.1]],state_names={'sprinkler':['no', 'yes']})
     
-    watson = TabularCPD('w',2,[[0.9,0.01],[0.1,0.99]],['r'],[2],
-                            state_names={'w':['no','yes'], 'r':['no', 'yes']})
+    watson = TabularCPD('watson',2,[[0.9,0.01],[0.1,0.99]],['rain'],[2],
+                            state_names={'watson':['no','yes'], 'rain':['no', 'yes']})
     
-    holmes = TabularCPD('h', 2,[[1,0.01, 0.1, 0],[0,0.99 ,0.9, 1]],['s', 'r'], [2, 2],
-                            state_names={'h':['no', 'yes'],'s':['no','yes'],'r':['no', 'yes']})
+    holmes = TabularCPD('holmes', 2,[[1,0.01, 0.1, 0],[0,0.99 ,0.9, 1]],['sprinkler', 'rain'], [2, 2],
+                            state_names={'holmes':['no', 'yes'],'sprinkler':['no','yes'],'rain':['no', 'yes']})
     
-    gibbon = TabularCPD('g',2,[[0.9,0.01],[0.1,0.99]],['r'],[2],
-                            state_names={'g':['no','yes'], 'r':['no', 'yes']})
+    gibbon = TabularCPD('gibbon',2,[[0.9,0.01],[0.1,0.99]],['rain'],[2],
+                            state_names={'gibbon':['no','yes'], 'rain':['no', 'yes']})
     print('setting up junction tree...')
     #setup tree
     rg = Clique([rain,gibbon])
@@ -33,47 +33,47 @@ def mrs_gibbon_example():
     print('\n\nHOLMES:\n')
     ##h query
     print('p(holmes)')
-    print(jt.query('h'))
+    print(jt.query('holmes'))
     print('\np(holmes|watson = yes, sprinkler = yes)')
     w_evidence = (watson,1)
     s_evidence = (sprinkler, 1)
-    print(jt.query('h',[w_evidence,s_evidence]))
+    print(jt.query('holmes',[w_evidence,s_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\nWATSON:\n')
     jt.init_tree()
     print('p(watson)')
-    print(jt.query('w'))
-    print('p(watson|ibbon = yes, holmes = no)')
+    print(jt.query('watson'))
+    print('p(watson|gibbon = yes, holmes = no)')
     g_evidence = (gibbon, 1)
     h_evidence = (holmes,0)
-    print(jt.query('w',[g_evidence,h_evidence]))
+    print(jt.query('watson',[g_evidence,h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\nRAIN:\n')
     #r query
     jt.init_tree()
     print('p(rain)')
-    print(jt.query('r'))
+    print(jt.query('rain'))
     print('p(rain|watson = yes, holmes = yes)')
     h_evidence = (holmes, 1)
-    print(jt.query('r',[w_evidence,h_evidence]))
+    print(jt.query('rain',[w_evidence,h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\n SPRNKLER:\n')
     #s query
     jt.init_tree()
     print('p(sprinkler)')
-    print(jt.query('s'))
+    print(jt.query('sprinkler'))
     print('p(sprinkler|holmes = yes)')
-    print(jt.query('s',[h_evidence]))
+    print(jt.query('sprinkler',[h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     print('\n\n GIBBON:\n')
     jt.init_tree()
     print('p(gibbon)')
-    print(jt.query('g'))
+    print(jt.query('gibbon'))
     print('p(g|watson = yes)')
     w_evidence = (watson, 1)
-    print(jt.query('g',[w_evidence]))
+    print(jt.query('gibbon',[w_evidence]))
 
