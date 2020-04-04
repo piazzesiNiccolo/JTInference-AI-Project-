@@ -32,7 +32,7 @@ In ogni esempio viene eseguita una query su ciascuna variabile aleatoria present
 \newpage
 \section*{Risultati}
 \paragraph{N.B} 
-Nelle tabelle le  probabilità marginali sono rappresentate come tuple. Se ad esempio ho una variabile binaria v con stati \{no, yes\} p(v) sarà scritta come (v = no, v=yes).\\\\
+Nelle tabelle le  probabilità marginali sono rappresentate come tuple. Se ad esempio ho una variabile binaria v con stati \{no, yes\} p(v) sarà scritta come (v $=$ no, v$=$yes).\\\\
 \begin{table}[tbh!]
 \small
 \begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
@@ -41,11 +41,11 @@ Nelle tabelle le  probabilità marginali sono rappresentate come tuple. Se ad es
  \hline
  Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
- Icy & (0.3, 0.7) & Holmes=no, Watson=yes & (0.1942, 0.8058) & (0.1942, 0.8058)\\
+ Icy & (0.3, 0.7) & Holmes$=$no, Watson$=$yes & (0.1942, 0.8058) & (0.1942, 0.8058)\\
 \hline
- Watson & (0.41, 0.59) & Holmes=yes & (0.2356, 0.7644) & (0.2356, 0.7644)\\
+ Watson & (0.41, 0.59) & Holmes$=$yes & (0.2356, 0.7644) & (0.2356, 0.7644)\\
 \hline
- Holmes & (0.41, 0.59) & Icy=no & (0.9, 0.1) & (0.9, 0.1)\\
+ Holmes & (0.41, 0.59) & Icy$=$no & (0.9, 0.1) & (0.9, 0.1)\\
 \hline
 \end{tabular}
 \newline
@@ -58,15 +58,15 @@ Nelle tabelle le  probabilità marginali sono rappresentate come tuple. Se ad es
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-Holmes &(0.8199,0.1801) & Watson=yes, Sprinkler=yes & (0.0476, 0.9524) &(0.0476, 0.9524)\\
+Holmes &(0.8199,0.1801) & Watson$=$yes, Sprinkler$=$yes & (0.0476, 0.9524) &(0.0476, 0.9524)\\
 \hline
-Watson & (0.811,0.189) & Gibbon = yes, Holmes = no & (0.8904,1096)& (0.8904,1096)\\
+Watson & (0.811,0.189) & Gibbon $=$ yes, Holmes $=$ no & (0.8904,1096)& (0.8904,1096)\\
 \hline
-Rain & (0.9,0.1) & Watson=yes, Holmes=yes & (0.0763, 0.9237) & (0.0763, 0.9237)\\
+Rain & (0.9,0.1) & Watson$=$yes, Holmes$=$yes & (0.0763, 0.9237) & (0.0763, 0.9237)\\
 \hline
-Sprinkler & (0.9,0.1) & Holmes=yes & (0.4947,0.5053) & (0.4947,0.5053)\\
+Sprinkler & (0.9,0.1) & Holmes$=$yes & (0.4947,0.5053) & (0.4947,0.5053)\\
 \hline
-Gibbon & (0.811,0.189) & Watson = yes & (0.4338,0.5662) & (0.4338,0.5662)\\
+Gibbon & (0.811,0.189) & Watson $=$ yes & (0.4338,0.5662) & (0.4338,0.5662)\\
 \hline
 \end{tabular}
 \end{table}
@@ -81,17 +81,17 @@ Gibbon & (0.811,0.189) & Watson = yes & (0.4338,0.5662) & (0.4338,0.5662)\\
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-Fire &(0.99,0.01) & Leaving=yes, Alarm=yes & (0.6333, 0.3667) &(0.6333, 0.3667)\\
+Fire &(0.99,0.01) & Leaving$=$yes, Alarm$=$yes & (0.6333, 0.3667) &(0.6333, 0.3667)\\
 \hline
-Tampering & (0.98,0.02) & Report = yes, Smoke = no & (0.4992,5008)&  (0.4992,5008)\\
+Tampering & (0.98,0.02) & Report $=$ yes, Smoke $=$ no & (0.4992,5008)&  (0.4992,5008)\\
 \hline
-Smoke & (0.9811,0.0189) & Fire=yes, Leaving=yes & (0.1, 0.9) & (0.1, 0.9)\\
+Smoke & (0.9811,0.0189) & Fire$=$yes, Leaving$=$yes & (0.1, 0.9) & (0.1, 0.9)\\
 \hline
-Alarm & (0.9733,0.0267) & Report=yes, Smoke=no & (0.4687,0.5313) & (0.4687,0.5313)\\
+Alarm & (0.9733,0.0267) & Report$=$yes, Smoke$=$no & (0.4687,0.5313) & (0.4687,0.5313)\\
 \hline
-Leaving & (0.9755,0.0245) & \makecell[l]{Report=no, \\ Fire=yes, \\Tampering=yes} & (0.3468,0.6532) & (0.3468,0.6532)\\
+Leaving & (0.9755,0.0245) & \makecell[l]{Report$=$no, \\ Fire$=$yes, \\Tampering$=$yes} & (0.3468,0.6532) & (0.3468,0.6532)\\
 \hline
-Report & (0.9719,0.0281)&Tampering=no, Smoke=Yes & (0.6798,0.3202) & (0.6798,0.3202)\\
+Report & (0.9719,0.0281)&Tampering$=$no, Smoke$=$Yes & (0.6798,0.3202) & (0.6798,0.3202)\\
 \hline
 \end{tabular}
 \newline
@@ -105,22 +105,22 @@ Report & (0.9719,0.0281)&Tampering=no, Smoke=Yes & (0.6798,0.3202) & (0.6798,0.3
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-MC &(0.8,0.2) & \makecell[l]{BT=yes, \\Coma=yes} & (0.6333, 0.3667) &(0.6333, 0.3667)\\
+MC &(0.8,0.2) & \makecell[l]{BT$=$yes, \\Coma$=$yes} & (0.6333, 0.3667) &(0.6333, 0.3667)\\
 \hline
-SC & (0.68,0.32) & MC=no & (0.8,0.2)&  (0.8,0.2)\\
+SC & (0.68,0.32) & MC$=$no & (0.8,0.2)&  (0.8,0.2)\\
 \hline
-BT & (0.92,0.008) & MC=yes, SH=yes & (0.8961, 0.1039) & (0.8961, 0.1039)\\
+BT & (0.92,0.008) & MC$=$yes, SH$=$yes & (0.8961, 0.1039) & (0.8961, 0.1039)\\
 \hline
-Coma & (0.656,0.344) & BT=yes, SH=yes & (0.25,0.75) & (0.25,0.75)\\
+Coma & (0.656,0.344) & BT$=$yes, SH$=$yes & (0.25,0.75) & (0.25,0.75)\\
 \hline
-SH & (0.384,0.6160) & BT=yes, MC=no & (0.2,0.8) &(0.2,0.8)\\
+SH & (0.384,0.6160) & BT$=$yes, MC$=$no & (0.2,0.8) &(0.2,0.8)\\
 \hline
 \end{tabular}
 \begin{tablenotes}
- 	    \item[1] MC = Metastatic Cancer
-        \item[2] BT = Brain Tumor
-        \item[3] SC = Serum Calcium
-        \item[4] SH = Severe Headaches
+ 	    \item[1] MC $=$ Metastatic Cancer
+        \item[2] BT $=$ Brain Tumor
+        \item[3] SC $=$ Serum Calcium
+        \item[4] SH $=$ Severe Headaches
  \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -135,22 +135,22 @@ SH & (0.384,0.6160) & BT=yes, MC=no & (0.2,0.8) &(0.2,0.8)\\
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-Rain &(0.99,0.01) & Alarm=yes & (0.9892, 0.108) &(0.9892, 0.108)\\
+Rain &(0.99,0.01) & Alarm$=$yes & (0.9892, 0.108) &(0.9892, 0.108)\\
 \hline
-Burglary & (0.5,0.5) & Alarm=yes, S=no & (0.8221,0.1779)& (0.8221,0.1779)\\
+Burglary & (0.5,0.5) & Alarm$=$yes, S$=$no & (0.8221,0.1779)& (0.8221,0.1779)\\
 \hline
-E & (0.9,0.1) & S=1, Burglary = no & (0.1565,0.8435) & (0.1565,0.8435)\\
+E & (0.9,0.1) & S$=$1, Burglary $=$ no & (0.1565,0.8435) & (0.1565,0.8435)\\
 \hline
-Flood & (0.99,0.1) & Alarm=yes, Flood=no & (0.8324, 0.1676) & (0.8324, 0.1676)\\
+Flood & (0.99,0.1) & Alarm$=$yes, Flood$=$no & (0.8324, 0.1676) & (0.8324, 0.1676)\\
 \hline
-Alarm & (0.4503,0.5497) & E=yes& (0.005,0.995) & (0.005,0.995)\\
+Alarm & (0.4503,0.5497) & E$=$yes& (0.005,0.995) & (0.005,0.995)\\
 \hline
-S & (0.4415,0.068,0.4905) & Burglary=no, E=no & (0.49,0.02,0.49) &(0.49,0.02,0.49)\\
+S & (0.4415,0.068,0.4905) & Burglary$=$no, E$=$no & (0.49,0.02,0.49) &(0.49,0.02,0.49)\\
 \hline
 \end{tabular}
 \begin{tablenotes}
- 	    \item[1] E= Earthquake 
-        \item[2] S= Seismometer
+ 	    \item[1] E$=$ Earthquake 
+        \item[2] S$=$ Seismometer
         \item[3] p(alarm) in Hugin ha valori(0.4501,0.5499). Essendo l'errore abbastanza piccolo e non influente sui calcoli successivi è stato scelto di ignorarlo
  \end{tablenotes}
 \end{threeparttable}

@@ -54,10 +54,10 @@ def cancer_neapolitan_example():
     print('\n\nBRAIN TUMOR QUERY\n')
     print('p(brain_tumor): ')
     print(jt.query('brain_tumor'))
-    print('p(brain_tumor | metastatic_cancer = no, serum_calcium = yes, severe_headaches = no)')
-    s_evidence = (Serum_Calcium, 1)
+    print('p(brain_tumor | metastatic_cancer = yes, severe_headaches = yes)')
+    m_evidence = (Metastatic_Cancer, 1)
     h_evidence = (Severe_Headache, 1)
-    print(jt.query('brain_tumor',[m_evidence,s_evidence,h_evidence]))
+    print(jt.query('brain_tumor',[m_evidence, h_evidence]))
 
     input('\n PRESS ENTER TO RUN NEXT QUERY')
     jt.init_tree()
