@@ -11,10 +11,11 @@ $ git clone https://github.com/piazzesiNiccolo/JTInference-AI-Project-.git
 $ cd JTInference-AI-Project-/
 $ pip3 install -r requirements.txt
 ```
-È possibile installare pgmpy e le dipendenze necessarie anche attraverso conda, seguendo le istruzioni a [questo link](https://pypi.org/project/pgmpy/)
+Al posto di pip può essere utilizzato anche conda:
 
-
-
+```bash
+$ conda install -c ankurankan pgmpy
+```
 Per visualizzare le reti e verificare i risultati installare inoltre [Hugin Educational](https://www.hugin.com/index.php/hugin-explorerhugin-educational/).
 Le reti utilizzate sono presenti nella cartella samples del path dove è installato hugin, ma sono state incluse per sicurezza anche nella cartella hugin_networks di questo progetto
 
