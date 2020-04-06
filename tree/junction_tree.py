@@ -42,7 +42,7 @@ class JunctionTree(object):
             c.visited = visit
     
     def query(self,variable,evidence_list = []):
-        
+        """return p(variable) or p(variable|e) if some evidence e is given) """
         for var,value in evidence_list:
             self.enter_evidence(var,value)
         self.propagate()
@@ -53,6 +53,8 @@ class JunctionTree(object):
     
     
     def enter_evidence(self, node, value):
+        """ evidence on a variable A is entered by multiplying a clique C containing variable A with a table  with probability 1 for A=value 
+        and 0 for all other values  """
         ev = TabularCPD(node.variable,node.variable_card, [[0] for i in range(node.variable_card)])
         ev.get_values()[value] = 1
         for clique in self.cliques:
@@ -62,7 +64,7 @@ class JunctionTree(object):
         
     
     def propagate(self):
-        
+        """ implements HUGIN belief propagation"""
         self.is_visited(False)
         self.collect_evidence(None, self.root, None)
         self.is_visited(False)

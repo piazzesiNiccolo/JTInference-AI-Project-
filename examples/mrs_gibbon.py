@@ -22,11 +22,11 @@ def mrs_gibbon_example():
                             state_names={'gibbon':['no','yes'], 'rain':['no', 'yes']})
     
     print('setting up junction tree...')
-    #setup tree
     rg = Clique([rain,gibbon])
     rhs = Clique([rain,holmes,sprinkler])
     rw = Clique([rain,watson])
-    jt = JunctionTree('tree',[rg,rhs,rw],rg)
+    
+    jt = JunctionTree('gibbon_tree',[rg,rhs,rw],rg)
     jt.add_separator(rg,rhs)
     jt.add_separator(rg,rw)
 

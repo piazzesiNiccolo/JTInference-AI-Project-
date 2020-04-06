@@ -22,17 +22,17 @@ def fire_example():
     
     report = TabularCPD('report', 2 ,[[0.99, 0.25], [0.01,0.75]],['leaving'],[2],
                             state_names={'report':['false','true'], 'leaving':['false', 'true']})
-    print('setting up tree...')
+    print('setting up junction tree...')
     #setup tree
     la = Clique([leaving,alarm])
     aft = Clique([alarm,fire,tampering])
     lr = Clique([leaving,report])
     fs = Clique([fire,smoke])
+    
     tree = JunctionTree('fire_tree',[la,aft,lr,fs],root=fs)
     tree.add_separator(la,aft)
     tree.add_separator(la,lr)
     tree.add_separator(aft,fs)
-    print('running queries...')
 
 
     print('\n\nFIRE\n')

@@ -28,7 +28,7 @@ def cancer_neapolitan_example():
     sbc = Clique([Serum_Calcium,Brain_Tumor,Coma])
     bh = Clique([Brain_Tumor,Severe_Headache])
     
-    jt = JunctionTree('tree',[bsm,sbc,bh], bsm)
+    jt = JunctionTree('cancer_tree',[bsm,sbc,bh], bsm)
     jt.add_separator(bsm,sbc)
     jt.add_separator(bsm,bh)
 
