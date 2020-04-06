@@ -82,4 +82,4 @@ def flood_example():
     print(tree.query('seismometer'))
     e_evidence = (earthquake, 0)
     print('p(seismometer|burglary = no, earthquake = no)')
-    print(tree.query('seismometer',[e_evidence, e_evidence]))
+    print(tree.query('seismometer',[e_evidence, b_evidence]))
