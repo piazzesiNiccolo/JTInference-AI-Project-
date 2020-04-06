@@ -19,7 +19,7 @@ examples = {1:ice.icy_roads_example, 2:mrs.mrs_gibbon_example, 3:fire.fire_examp
 exit = False
 while not exit: 
     choice = input('\nSelect a number to run an example:\n\n\
-1:icy_roads 2:mrs_gibbon 3:fire 4:cancer_neapolitan 5:flood quit: EXIT PROGRAM\n\n:').lower()
+1:icy_roads 2:mrs_gibbon 3:fire 4:cancer_neapolitan 5:flood quit:EXIT PROGRAM\n\n:').lower()
     
     if choice == 'quit':
         exit = True

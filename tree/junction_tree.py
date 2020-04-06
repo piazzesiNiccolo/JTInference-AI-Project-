@@ -64,10 +64,8 @@ class JunctionTree(object):
     def propagate(self):
         
         self.is_visited(False)
-        print('collecting evidence...')
         self.collect_evidence(None, self.root, None)
         self.is_visited(False)
-        print('distributing evidence...')
         self.distribute_evidence(self.root)
         self.normalize()
         

@@ -52,7 +52,7 @@ Nelle tabelle le  probabilità marginali sono rappresentate come tuple. Se ad es
 \vspace*{0.5 cm}
 \newline
 
-\begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
+\begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
 \hline
  \multicolumn{5}{|c|}{Mrs Gibbon} \\
  \hline
@@ -75,23 +75,23 @@ Gibbon & (0.811,0.189) & Watson $=$ yes & (0.4338,0.5662) & (0.4338,0.5662)\\
 \begin{table}[hbt!]
 \small
 
-\hskip-1.0cm\begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
+\hskip-1.0cm\begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
 \hline
  \multicolumn{5}{|c|}{Fire} \\
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-Fire &(0.99,0.01) & Leaving$=$yes, Alarm$=$yes & (0.6333, 0.3667) &(0.6333, 0.3667)\\
+Fire &(0.99,0.01) & Leaving$=$True, Alarm$=$True & (0.6333, 0.3667) &(0.6333, 0.3667)\\
 \hline
-Tampering & (0.98,0.02) & Report $=$ yes, Smoke $=$ no & (0.4992,5008)&  (0.4992,5008)\\
+Tampering & (0.98,0.02) & Report$=$True, Smoke$=$False & (0.4992,5008)&  (0.4992,5008)\\
 \hline
-Smoke & (0.9811,0.0189) & Fire$=$yes, Leaving$=$yes & (0.1, 0.9) & (0.1, 0.9)\\
+Smoke & (0.9811,0.0189) & Fire$=$True, Leaving$=$True & (0.1, 0.9) & (0.1, 0.9)\\
 \hline
-Alarm & (0.9733,0.0267) & Report$=$yes, Smoke$=$no & (0.4687,0.5313) & (0.4687,0.5313)\\
+Alarm & (0.9733,0.0267) & Report$=$True, Smoke$=$False & (0.4687,0.5313) & (0.4687,0.5313)\\
 \hline
-Leaving & (0.9755,0.0245) & \makecell[l]{Report$=$no, \\ Fire$=$yes, \\Tampering$=$yes} & (0.3468,0.6532) & (0.3468,0.6532)\\
+Leaving & (0.9755,0.0245) & \makecell[l]{Report$=$False, \\ Fire$=$True, \\Tampering$=$ \\True} & (0.8342,0.1658) & (0.8342,0.1658)\\
 \hline
-Report & (0.9719,0.0281)&Tampering$=$no, Smoke$=$Yes & (0.6798,0.3202) & (0.6798,0.3202)\\
+Report & (0.9719,0.0281)&Tampering$=$ False, Smoke$=$True & (0.6826,03174) & (0.6826,03174)\\
 \hline
 \end{tabular}
 \newline
@@ -99,21 +99,21 @@ Report & (0.9719,0.0281)&Tampering$=$no, Smoke$=$Yes & (0.6798,0.3202) & (0.6798
 \newline
 
 \hskip-1.0cm\begin{threeparttable}
-\begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
+\begin{tabular}{ |p{2cm}||p{2cm}|p{2cm}|p{3cm}|p{3cm}|  }
 \hline
  \multicolumn{5}{|c|}{Cancer Neapolitan} \\
  \hline
 Variabile & P(var) & Evidenza & P(var | evidenza) & P(var | evidenza)  in Hugin\\
  \hline
-MC &(0.8,0.2) & \makecell[l]{BT$=$yes, \\Coma$=$yes} & (0.6333, 0.3667) &(0.6333, 0.3667)\\
+MC &(0.8,0.2) & BT$=$p, Coma$=$p & (0.48, 0.52) &(0.48, 0.52)\\
 \hline
-SC & (0.68,0.32) & MC$=$no & (0.8,0.2)&  (0.8,0.2)\\
+SC & (0.68,0.32) & MC$=$a & (0.8,0.2)&  (0.8,0.2)\\
 \hline
-BT & (0.92,0.008) & MC$=$yes, SH$=$yes & (0.8961, 0.1039) & (0.8961, 0.1039)\\
+BT & (0.92,0.08) & MC$=$p,SH$=$p & (0.75, 0.25) &(0.75, 0.25)\\
 \hline
-Coma & (0.656,0.344) & BT$=$yes, SH$=$yes & (0.25,0.75) & (0.25,0.75)\\
+Coma & (0.656,0.344) & BT$=$p,SH$=$p & (0.25,0.75) & (0.25,0.75)\\
 \hline
-SH & (0.384,0.6160) & BT$=$yes, MC$=$no & (0.2,0.8) &(0.2,0.8)\\
+SH & (0.384,0.6160) & BT$=$p,MC$=$a & (0.2,0.8) &(0.2,0.8)\\
 \hline
 \end{tabular}
 \begin{tablenotes}
@@ -121,6 +121,7 @@ SH & (0.384,0.6160) & BT$=$yes, MC$=$no & (0.2,0.8) &(0.2,0.8)\\
         \item[2] BT $=$ Brain Tumor
         \item[3] SC $=$ Serum Calcium
         \item[4] SH $=$ Severe Headaches
+        \item[5] p $=$ present, a $=$ absent
  \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -129,7 +130,7 @@ SH & (0.384,0.6160) & BT$=$yes, MC$=$no & (0.2,0.8) &(0.2,0.8)\\
 \begin{table}[hbt!]
 \small
 \hskip-1.0cm\begin{threeparttable}
-\begin{tabular}{ |p{2cm}|p{3cm}|p{2cm}|p{3cm}|p{3cm}|  }
+\begin{tabular}{ |p{2cm}||p{3cm}|p{2cm}|p{3cm}|p{3cm}|  }
 \hline
  \multicolumn{5}{|c|}{Flood} \\
  \hline

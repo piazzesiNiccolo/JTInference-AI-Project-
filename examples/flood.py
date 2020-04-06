@@ -28,7 +28,7 @@ def flood_example():
     ebs = Clique([earthquake, burglary, seismometer])
     fr = Clique([flood, rain])
     
-    tree = JunctionTree('tree', [feba,ebs,fr], feba)
+    tree = JunctionTree('tree', [feba,ebs,fr], fr)
     tree.add_separator(feba, ebs)
     tree.add_separator(feba, fr)
 
@@ -57,6 +57,7 @@ def flood_example():
     print('p(earthquake|seismometer = 1, burglary = no)')
     print(tree.query('earthquake',[s_evidence, b_evidence]))
 
+    input('\n PRESS ENTER TO RUN NEXT QUERY')
     tree.init_tree()
     print('\n\nFLOOD\n')
     print('p(flood): ')
